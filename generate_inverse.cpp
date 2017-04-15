@@ -30,6 +30,7 @@ int main(int argc, char **argv) {
     int rand_in = 0;
     while(count < problems)
     {
+    	//comment this line for consecutive
     	rand_pancakes = PancakePuzzle::GetRandomState(pancakes);
     	for(int i = 0; i < pancakes; i+=(rand_in+1))
     	{
@@ -38,6 +39,7 @@ int main(int argc, char **argv) {
     		{
     			continue;
     		}
+    		//uncomment this for consecutive
     		/*rand_pancakes = PancakePuzzle::GetRandomState(rand_in + 1);
     		for(unsigned k = 0; k < rand_pancakes.puzzle.size(); k++)
     		{
@@ -45,10 +47,14 @@ int main(int argc, char **argv) {
     		}*/
     		for(int j = 0; j < rand_in; j++)
     		{
+    			//uncomment this for consecutive
     			//inv_pancakes.puzzle[rand_pancakes.puzzle[j]] = rand_pancakes.puzzle[j + 1];
+    			//comment this for consecutive
     			inv_pancakes.puzzle[rand_pancakes.puzzle[j + i]] = rand_pancakes.puzzle[j + i + 1];
     		}
+    		//uncomment this for consecutive
     		//inv_pancakes.puzzle[rand_pancakes.puzzle[rand_in]] = rand_pancakes.puzzle[0];
+    		//comment this for consecutive
     		inv_pancakes.puzzle[rand_pancakes.puzzle[rand_in + i]] = rand_pancakes.puzzle[i];
     		cout << "inv" << endl;
     		cout << inv_pancakes << endl;
