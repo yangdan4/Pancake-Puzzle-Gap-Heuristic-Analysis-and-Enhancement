@@ -143,11 +143,6 @@ void reverse_hash2(PancakeState &s, unsigned int hash)
 		}
 	}
 	
-	/*for(unsigned i = 0; i < puzzle.size(); i++)
-	{
-		std::cout << puzzle[i] << std::endl;
-	}*/
-	
 	for (int x = 11; x >= 0; x--)
 	{
 		//std::cout << x << std::endl;
