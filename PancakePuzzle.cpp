@@ -98,8 +98,6 @@ double PancakePuzzle::GetActionCost(const PancakeState& state, unsigned action) 
 }
 
 void PancakePuzzle::ApplyAction(PancakeState& state, unsigned action) const {
-	//std::cout << size << std::endl;
-	//std::cout << state.puzzle.size() << std::endl;
     assert(size == state.puzzle.size());
     assert(action >= 1 && action <= size);
     
@@ -119,8 +117,6 @@ void PancakePuzzle::ApplyAction(PancakeState& state, unsigned action) const {
 }
 
 void PancakePuzzle::ApplyAction2(PancakeState& state, unsigned action) const {
-	//std::cout << size << std::endl;
-	//std::cout << state.puzzle.size() << std::endl;
     assert(size == state.puzzle.size());
     assert(action >= 1 && action <= size);
     
@@ -131,9 +127,7 @@ void PancakePuzzle::ApplyAction2(PancakeState& state, unsigned action) const {
     while(low_index < high_index) {
         temp = state.puzzle[low_index];
         state.puzzle[low_index] = state.puzzle[high_index];
-        //state.inverse[state.puzzle[high_index]] = low_index;
         state.puzzle[high_index] = temp;
-        //state.inverse[temp] = high_index;
         low_index++;
         high_index--;
     }
@@ -149,85 +143,6 @@ bool PancakePuzzle::GoalTest(const PancakeState& state) const {
     
     return true;
 }
-
-/*int PancakePuzzle::GapHeur(PancakeState& state) const {
-	assert(size == state.puzzle.size());
-	
-	int gaps = 0;
-	for(int i = 0; i < int(size) - 1; i++) {
-        if(int(abs(state.puzzle[i] - state.puzzle[i + 1])) != 1)
-            gaps++;
-    }
-    if(int(abs(state.puzzle[int(size) - 1] - (size - 1))) != 1)
-    {
-    	gaps++;
-    }
-    return gaps;
-}
-
-int PancakePuzzle::Search(PancakeState& state, int g, int depth, int parent) {
-	assert(size == state.puzzle.size());
-	
-	counter++;
-	int f = g + GapHeur(state);
-	if(f > depth)
-	{
-		path.clear();
-		return f;
-	}
-	if(GoalTest(state))
-	{
-		return -g;
-	}
-	int trans_cost;
-	int min = -1;
-	int temp = 0;
-	for(int i = 2; i <= int(size); i++)
-	{
-		if(i == parent)
-		{
-			continue;
-		}
-		trans_cost = GetActionCost(state, i);
-		ApplyAction(state, i);
-		temp = Search(state, g + trans_cost, depth, i);
-		if(temp < 0)
-		{
-			path.push_back(i);
-			return temp;
-		}
-		ApplyAction(state, i);
-		if(min == -1 or temp < min)
-		{
-			min = temp;
-		}
-	}
-	return min;
-}
-
-int PancakePuzzle::Solve(PancakeState& state) {
-	//std::cout << size << std::endl;
-	//std::cout << state.puzzle.size() << std::endl;
-	assert(size == state.puzzle.size());
-	
-	counter = 0;
-	path.clear();
-	if(size == 0)
-	{
-		return 0;
-	}
-	int depth = GapHeur(state);
-	int temp = 0;
-	while (1)
-	{
-		temp = Search(state, 0, depth, -1);
-		if(temp < 0)
-		{
-			return -temp;
-		}
-		depth = temp;
-	}
-}*/
 
 PancakeState PancakePuzzle::GetRandomState(unsigned size) {
     std::vector<int> permutation;

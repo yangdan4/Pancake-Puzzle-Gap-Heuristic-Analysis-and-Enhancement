@@ -25,49 +25,6 @@ public:
 		position = -1;
 	}
 	
-	/*PancakeState(const PancakeState &obj)
-	{
-		puzzle.clear();
-		std::cout << "nice" << std::endl;
-		for(unsigned i = 0; i < obj.puzzle.size(); i++)
-		{
-			puzzle.push_back(obj.puzzle[i]);
-		}
-		set_g(obj.get_g());
-		set_h(obj.get_h());
-		set_action(obj.get_action());
-		set_parent(*(obj.get_parent()));
-		std::cout << "what" << std::endl;
-		if(obj.get_parent() != NULL)
-		{
-			std::cout << "lala" << std::endl;
-			for (unsigned int x = 0; x < (*(obj.get_parent())).puzzle.size(); x++)
-				std::cout << (*(obj.get_parent())).puzzle[x] << " ";
-		}
-		std::cout << std::endl;
-		if(get_parent() != NULL)
-		{
-			for (unsigned int x = 0; x < (*(get_parent())).puzzle.size(); x++)
-				std::cout << (*(get_parent())).puzzle[x] << " ";
-		}
-		std::cout << std::endl;
-		std::cout << "no" << std::endl;
-		std::cout << "myself" << std::endl;
-		for (unsigned int x = 0; x < puzzle.size(); x++)
-			std::cout << puzzle[x] << " ";
-		std::cout << std::endl;
-		std::cout << "end" << std::endl;
-		std::cout << "object" << std::endl;
-		for (unsigned int x = 0; x < puzzle.size(); x++)
-			std::cout << obj.puzzle[x] << " ";
-		std::cout << std::endl;
-		std::cout << "end object" << std::endl;
-		std::cout << "address" << std::endl;
-		std::cout << &obj << " ";
-		std::cout << std::endl;
-		std::cout << "end address" << std::endl;
-	}*/
-	
 	std::vector<int> puzzle;
 	
 	std::vector<int> inverse;
@@ -120,45 +77,6 @@ public:
 		return false;
 	}
 	
-	/*PancakeState& operator=(const PancakeState& obj)
-	{
-		std::cout << "=" << std::endl;
-		std::cout << "what" << std::endl;
-		if(obj.get_parent() != NULL)
-		{
-			for (unsigned int x = 0; x < (*(obj.get_parent())).puzzle.size(); x++)
-				std::cout << (*(obj.get_parent())).puzzle[x] << " ";
-		}
-		std::cout << std::endl;
-		std::cout << "no" << std::endl;
-		puzzle.clear();
-		for(unsigned i = 0; i < obj.puzzle.size(); i++)
-		{
-			puzzle.push_back(obj.puzzle[i]);
-		}
-		std::cout << "say" << std::endl;
-		if(obj.get_parent() != NULL)
-		{
-			for (unsigned int x = 0; x < (*(obj.get_parent())).puzzle.size(); x++)
-				std::cout << (*(obj.get_parent())).puzzle[x] << " ";
-		}
-		std::cout << std::endl;
-		std::cout << "yo" << std::endl;
-		set_g(obj.get_g());
-		set_h(obj.get_h());
-		set_action(obj.get_action());
-		set_parent(*(obj.get_parent()));
-		std::cout << "oh" << std::endl;
-		if(obj.get_parent() != NULL)
-		{
-			for (unsigned int x = 0; x < (*(obj.get_parent())).puzzle.size(); x++)
-				std::cout << (*(get_parent())).puzzle[x] << " ";
-		}
-		std::cout << std::endl;
-		std::cout << "wow" << std::endl;
-		return *this;
-	}*/
-	
 private:
 
 	double g;
@@ -200,10 +118,6 @@ public:
     PancakePuzzle(unsigned num_pancakes, costType type=unit);
     
     ~PancakePuzzle();
-    
-    //int counter;
-    
-    //std::vector<int> path;
 
     // Tests if the given state is a goal
     bool GoalTest(const PancakeState &state) const;
@@ -222,15 +136,6 @@ public:
     // Returns a random state
     static PancakeState GetRandomState(unsigned size);
     
-    
-    // Gap Heuristic
-    //int GapHeur(PancakeState& state) const;
-    
-    //A*
-    //int Search(PancakeState& state, int g, int depth, int parent);
-    
-    //ID
-    //int Solve(PancakeState& state);
     
     unsigned size;
     costType cost_type;
