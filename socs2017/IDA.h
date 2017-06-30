@@ -147,8 +147,8 @@ public:
     
     uint64_t GetActionCounter();
     
-    void SetCounter(uint64_t new_counter);
-    
+    void InitializeCounters();
+
     int GetIterations();
     
     int GetNumberOfSolutions();

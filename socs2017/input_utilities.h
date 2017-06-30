@@ -24,4 +24,6 @@ bool read_in_permutations(const char *filename,
  */
 bool check_permutation(const std::vector<int> &to_check);
 
+std::string int_to_string(int i);
+
 #endif

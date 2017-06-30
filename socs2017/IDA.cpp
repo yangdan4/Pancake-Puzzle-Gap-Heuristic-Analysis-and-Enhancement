@@ -15,6 +15,16 @@ IDA::IDA(PancakePuzzle& p, double new_weight, bool new_greater_pruning, bool new
 IDA::~IDA() {
 }
 
+void IDA::InitializeCounters()
+{
+    counter = 0;
+    top_counter = 0;
+    action_counter = 0;
+    iterations = 0;
+    number_of_solutions = 0;
+    solution_count = 0;
+}
+
 uint64_t IDA::GetCounter()
 {
 	return counter;
@@ -33,11 +43,6 @@ uint64_t IDA::GetActionCounter()
 double IDA::GetWeight()
 {
 	return weight;
-}
-
-void IDA::SetCounter(uint64_t new_counter)
-{
-	counter = 0;
 }
 
 int IDA::GetIterations()
@@ -2599,10 +2604,7 @@ int IDA::Solve_Gap(PancakeState& state) {
 	assert(puzzle.size == state.puzzle.size());
 	srand ( time(NULL) );
 	clock_t t1;
-	solution_count = 0;
-	counter = 0;
-	iterations = 0;
-	number_of_solutions = 0;
+	InitializeCounters();
 	flag = 0;
 	path.clear();
 	if(puzzle.size == 0)
@@ -2629,11 +2631,7 @@ int IDA::Solve_Gap(PancakeState& state) {
 int IDA::Solve_Gap_EC(PancakeState& state) {
 	assert(puzzle.size == state.puzzle.size());
 	
-	solution_count = 0;
-	counter = 0;
-	action_counter = 0;
-	iterations = 0;
-	number_of_solutions = 0;
+	InitializeCounters();
 	flag = 0;
 	path.clear();
 	if(puzzle.size == 0)
@@ -2661,9 +2659,7 @@ int IDA::Solve_Gap_EC(PancakeState& state) {
 int IDA::Solve_Inverse(PancakeState& state) {
 	assert(puzzle.size == state.puzzle.size());
 	
-	counter = 0;
-	iterations = 0;
-	number_of_solutions = 0;
+	InitializeCounters();
 	flag = 0;
 	path.clear();
 	if(puzzle.size == 0)
@@ -2689,11 +2685,7 @@ int IDA::Solve_Inverse(PancakeState& state) {
 int IDA::Solve_Inverse_EC(PancakeState& state) {
 	assert(puzzle.size == state.puzzle.size());
 	
-	counter = 0;
-	top_counter = 0;
-	action_counter = 0;
-	iterations = 0;
-	number_of_solutions = 0;
+	InitializeCounters();
 	flag = 0;
 	path.clear();
 	if(puzzle.size == 0)
@@ -2721,11 +2713,7 @@ int IDA::Solve_Inverse_EC(PancakeState& state) {
 int IDA::Solve_Inverse_FG_EC(PancakeState& state) {
 	assert(puzzle.size == state.puzzle.size());
 	
-	counter = 0;
-	top_counter = 0;
-	action_counter = 0;
-	iterations = 0;
-	number_of_solutions = 0;
+	InitializeCounters();
 	flag = 0;
 	path.clear();
 	if(puzzle.size == 0)
@@ -2753,11 +2741,7 @@ int IDA::Solve_Inverse_FG_EC(PancakeState& state) {
 int IDA::Solve_Top_No_Inverse_EC(PancakeState& state) {
 	assert(puzzle.size == state.puzzle.size());
 	
-	counter = 0;
-	top_counter = 0;
-	action_counter = 0;
-	iterations = 0;
-	number_of_solutions = 0;
+	InitializeCounters();
 	flag = 0;
 	path.clear();
 	if(puzzle.size == 0)
@@ -2785,11 +2769,7 @@ int IDA::Solve_Top_No_Inverse_EC(PancakeState& state) {
 int IDA::Solve_L_No_Inverse_EC(PancakeState& state) {
 	assert(puzzle.size == state.puzzle.size());
 	
-	counter = 0;
-	top_counter = 0;
-	action_counter = 0;
-	iterations = 0;
-	number_of_solutions = 0;
+	InitializeCounters();
 	flag = 0;
 	path.clear();
 	if(puzzle.size == 0)
@@ -2817,11 +2797,7 @@ int IDA::Solve_L_No_Inverse_EC(PancakeState& state) {
 int IDA::Solve_L_No_Inverse_FG_EC(PancakeState& state) {
 	assert(puzzle.size == state.puzzle.size());
 	
-	counter = 0;
-	top_counter = 0;
-	action_counter = 0;
-	iterations = 0;
-	number_of_solutions = 0;
+	InitializeCounters();
 	flag = 0;
 	path.clear();
 	if(puzzle.size == 0)
@@ -2849,11 +2825,7 @@ int IDA::Solve_L_No_Inverse_FG_EC(PancakeState& state) {
 int IDA::Solve_Top_With_Inverse_EC(PancakeState& state) {
 	assert(puzzle.size == state.puzzle.size());
 	
-	counter = 0;
-	top_counter = 0;
-	action_counter = 0;
-	iterations = 0;
-	number_of_solutions = 0;
+	InitializeCounters();
 	flag = 0;
 	path.clear();
 	if(puzzle.size == 0)
@@ -2881,11 +2853,7 @@ int IDA::Solve_Top_With_Inverse_EC(PancakeState& state) {
 int IDA::Solve_Top_With_Inverse(PancakeState& state) {
 	assert(puzzle.size == state.puzzle.size());
 	
-	counter = 0;
-	top_counter = 0;
-	action_counter=0;
-	iterations = 0;
-	number_of_solutions = 0;
+	InitializeCounters();
 	flag = 0;
 	path.clear();
 	if(puzzle.size == 0)
@@ -2911,9 +2879,7 @@ int IDA::Solve_Top_With_Inverse(PancakeState& state) {
 int IDA::Solve_Top_No_Inverse(PancakeState& state) {
 	assert(puzzle.size == state.puzzle.size());
 	
-	counter = 0;
-	iterations = 0;
-	number_of_solutions = 0;
+	InitializeCounters();
 	flag = 0;
 	path.clear();
 	if(puzzle.size == 0)
@@ -2939,9 +2905,7 @@ int IDA::Solve_Top_No_Inverse(PancakeState& state) {
 int IDA::Solve_L_No_Inverse(PancakeState& state) {
 	assert(puzzle.size == state.puzzle.size());
 	
-	counter = 0;
-	iterations = 0;
-	number_of_solutions = 0;
+	InitializeCounters();
 	flag = 0;
 	path.clear();
 	if(puzzle.size == 0)
@@ -2967,11 +2931,7 @@ int IDA::Solve_L_No_Inverse(PancakeState& state) {
 int IDA::Solve_L_No_Inverse_FG(PancakeState& state) {
 	assert(puzzle.size == state.puzzle.size());
 	
-	counter = 0;
-	iterations = 0;
-	number_of_solutions = 0;
-	flag = 0;
-	top_counter = 0;
+	InitializeCounters();
 	path.clear();
 	if(puzzle.size == 0)
 	{
@@ -2996,10 +2956,7 @@ int IDA::Solve_L_No_Inverse_FG(PancakeState& state) {
 int IDA::Solve_Inverse_FG(PancakeState& state) {
 	assert(puzzle.size == state.puzzle.size());
 	
-	counter = 0;
-	iterations = 0;
-	number_of_solutions = 0;
-	top_counter = 0;
+	InitializeCounters();
 	flag = 0;
 	path.clear();
 	if(puzzle.size == 0)

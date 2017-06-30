@@ -7,7 +7,7 @@ HEADERS = PancakePuzzle.h input_utilities.h IDA.h
 SOURCES = $(HEADERS:%.h=%.cpp)
 
 # Defines location of the object files
-OBJ_LOC = build/obj
+OBJ_LOC = obj
 
 # Defines the objects for the debug build
 OBJ_DEBUG_SUFFIX = debug.o
@@ -30,23 +30,30 @@ $(OBJS_RELEASE): $(OBJ_LOC)/%.$(OBJ_RELEASE_SUFFIX) : %.cpp %.h
 	$(CC) $(CXXRELEASEFLAGS) -c $< -o $@
 
 # Excecutables for problem generators
-DEBUG_GENERATOR_TARGET = build/bin/generator_debug
-RELEASE_GENERATOR_TARGET = build/bin/generator_release
+DEBUG_GENERATOR_TARGET = bin/generator_debug
+RELEASE_GENERATOR_TARGET = bin/generator_release
 
 # Executables for problem solving
-DEBUG_SOLVER_TARGET = ../bin/solver_debug
-RELEASE_SOLVER_TARGET = ../bin/solver_release
+DEBUG_SOLVER_TARGET = bin/solver_debug
+RELEASE_SOLVER_TARGET = bin/solver_release
 
-# Compiles targets
+# Compiles problem generation targets
 $(DEBUG_GENERATOR_TARGET): $(OBJS_DEBUG) generate_cycles.cpp
 	$(CC) $(CXXDEBUGFLAGS) -o $(DEBUG_GENERATOR_TARGET) generate_cycles.cpp $(OBJS_DEBUG)
 
 $(RELEASE_GENERATOR_TARGET): $(OBJS_RELEASE) generate_cycles.cpp
 	$(CC) $(CXXRELEASEFLAGS) -o $(RELEASE_GENERATOR_TARGET) generate_cycles.cpp $(OBJS_RELEASE)
 
-debug: $(DEBUG_GENERATOR_TARGET)
+# Compiles solver targets
+$(DEBUG_SOLVER_TARGET): $(OBJS_DEBUG) run_solver.cpp
+	$(CC) $(CXXDEBUGFLAGS) -o $(DEBUG_SOLVER_TARGET) run_solver.cpp $(OBJS_DEBUG)
 
-release: $(RELEASE_GENERATOR_TARGET)
+$(RELEASE_SOLVER_TARGET): $(OBJS_RELEASE) run_solver.cpp
+	$(CC) $(CXXRELEASEFLAGS) -o $(RELEASE_SOLVER_TARGET) run_solver.cpp $(OBJS_RELEASE)
+
+debug: $(DEBUG_GENERATOR_TARGET) $(DEBUG_SOLVER_TARGET)
+
+release: $(RELEASE_GENERATOR_TARGET) $(RELEASE_SOLVER_TARGET)
 
 clean:
-	rm -f $(OBJS_DEBUG) $(OBJS_RELEASE) $(DEBUG_GENERATOR_TARGET) $(RELEASE_GENERATOR_TARGET)
+	rm -f $(OBJS_DEBUG) $(OBJS_RELEASE) $(DEBUG_GENERATOR_TARGET) $(RELEASE_GENERATOR_TARGET) $(DEBUG_SOLVER_TARGET) $(RELEASE_SOLVER_TARGET)

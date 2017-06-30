@@ -79,3 +79,10 @@ bool check_permutation(const std::vector<int> &to_check) {
 
     return true;
 }
+
+std::string int_to_string(int i)
+{
+    std::stringstream s;
+    s << i;
+    return s.str();
+}
